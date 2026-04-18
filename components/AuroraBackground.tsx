@@ -54,93 +54,96 @@ export default function AuroraBackground() {
         }}
       />
 
-      {/* Animated Optical / Synapse Network SVG */}
-      <svg
-        className="absolute inset-0 w-full h-full pointer-events-none"
-        style={{ opacity: 0.35, zIndex: 0 }}
-        viewBox="0 0 1200 800"
-        preserveAspectRatio="xMidYMid slice"
-      >
-        <defs>
-          <filter id="meshGlow">
-            <feGaussianBlur stdDeviation="3" result="blurred" />
-            <feMerge>
-              <feMergeNode in="blurred" />
-              <feMergeNode in="SourceGraphic" />
-            </feMerge>
-          </filter>
-        </defs>
-
-        {/* Global Connection Lines */}
-        <g filter="url(#meshGlow)">
-          <path
-            d="M 100 700 L 300 500 L 500 650 L 800 400 L 950 150 M 300 500 L 400 250 L 700 300 M 100 450 L 400 250 M 500 650 L 900 750 M 700 300 L 800 400"
-            stroke="rgba(139,92,246,0.25)"
-            strokeWidth="1.5"
-            fill="none"
-          />
-          {/* Static Nodes */}
-          <circle cx="100" cy="700" r="5" fill="#7DD3FC" />
-          <circle cx="300" cy="500" r="7" fill="#8B5CF6" />
-          <circle cx="500" cy="650" r="6" fill="#7DD3FC" />
-          <circle cx="800" cy="400" r="5" fill="#8B5CF6" />
-          <circle cx="950" cy="150" r="6" fill="#7DD3FC" />
-          <circle cx="400" cy="250" r="8" fill="#8B5CF6" />
-          <circle cx="700" cy="300" r="5" fill="#7DD3FC" />
-          <circle cx="100" cy="450" r="4" fill="#8B5CF6" />
-          <circle cx="900" cy="750" r="7" fill="#7DD3FC" />
-        </g>
-
-        {/* Pulsing Energy Streams (Animated) */}
-        <motion.path
-          d="M 100 700 L 300 500 L 500 650 L 800 400 L 950 150"
-          stroke="#7DD3FC"
-          strokeWidth="3"
-          fill="none"
-          initial={{ pathLength: 0, opacity: 0 }}
-          animate={{ pathLength: [0, 1, 1, 0], opacity: [0, 0.8, 0.8, 0] }}
-          transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
-          filter="url(#meshGlow)"
-        />
-        <motion.path
-          d="M 100 450 L 400 250 L 700 300 L 800 400"
-          stroke="#8B5CF6"
-          strokeWidth="3"
-          fill="none"
-          initial={{ pathLength: 0, opacity: 0 }}
-          animate={{ pathLength: [0, 1, 1, 0], opacity: [0, 0.8, 0.8, 0] }}
-          transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut', delay: 3 }}
-          filter="url(#meshGlow)"
-        />
-      </svg>
-
-      {/* Floating LLM Imprints */}
+      {/* Dynamic AI Generation Background Elements */}
       <div className="absolute inset-0 pointer-events-none" style={{ zIndex: 1 }}>
-        {[
-          { text: 'Claude 3.5 Sonnet', x: '18%', y: '25%', delay: 0 },
-          { text: 'GPT-4o', x: '82%', y: '28%', delay: 3 },
-          { text: 'Gemini 1.5 Pro', x: '78%', y: '68%', delay: 6 },
-          { text: 'LLaMA 3', x: '12%', y: '65%', delay: 9 },
-        ].map((llm, i) => (
-          <motion.div
-            key={i}
-            className="absolute font-syne pointer-events-none"
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: [0, 0.08, 0.08, 0], scale: [0.8, 1, 1.1, 1], y: [0, -30] }}
-            transition={{ duration: 15, delay: llm.delay, repeat: Infinity, ease: 'easeInOut' }}
-            style={{
-              left: llm.x,
-              top: llm.y,
-              fontSize: 'clamp(28px, 5vw, 80px)',
-              fontWeight: 800,
-              color: 'rgba(255,255,255,1)',
-              whiteSpace: 'nowrap',
-              transform: 'translate(-50%, -50%)',
-            }}
-          >
-            {llm.text}
-          </motion.div>
-        ))}
+        
+        {/* 1. Chatbot / Code Stream (Left Side) */}
+        <motion.div
+          className="absolute rounded-2xl border hidden md:flex flex-col"
+          style={{ width: 320, height: 400, left: '6%', top: '22%', background: 'rgba(255,255,255,0.015)', borderColor: 'rgba(255,255,255,0.05)', backdropFilter: 'blur(8px)', transformOrigin: 'center' }}
+          initial={{ opacity: 0, y: 30, rotate: -4 }}
+          animate={{ opacity: 0.25, y: [0, -15, 0] }}
+          transition={{ opacity: { duration: 2.5 }, y: { duration: 16, repeat: Infinity, ease: "easeInOut" } }}
+        >
+          <div className="h-10 border-b border-white/5 flex items-center px-4">
+            <span style={{ fontSize: 10, fontFamily: 'var(--font-space-mono)', color: 'rgba(255,255,255,0.4)' }}>LLM Agent • Generate App</span>
+          </div>
+          <div className="p-5 flex flex-col gap-4 overflow-hidden mask-bottom relative">
+            {Array.from({ length: 8 }).map((_, i) => (
+              <motion.div
+                key={i}
+                className="h-2 rounded-full"
+                style={{ width: `${Math.random() * 40 + 30}%`, background: 'rgba(125, 211, 252, 0.4)' }}
+                initial={{ scaleX: 0, opacity: 0 }}
+                animate={{ scaleX: 1, opacity: 1 }}
+                transition={{ duration: 1.5, delay: i * 0.7, repeat: Infinity, repeatDelay: 5.6, ease: "easeOut", transformOrigin: "left" }}
+              />
+            ))}
+            <motion.div 
+               className="absolute bottom-4 left-5 w-4 h-4 rounded-full bg-blue-400"
+               animate={{ opacity: [1, 0, 1] }} 
+               transition={{ duration: 1, repeat: Infinity }}
+            />
+          </div>
+        </motion.div>
+
+        {/* 2. Abstract App / Wireframe Creation (Right Side) */}
+        <motion.div
+          className="absolute rounded-2xl border hidden lg:flex flex-col overflow-hidden shadow-2xl"
+          style={{ width: 280, height: 420, right: '8%', top: '15%', background: 'rgba(255,255,255,0.015)', borderColor: 'rgba(255,255,255,0.05)', backdropFilter: 'blur(8px)' }}
+          initial={{ opacity: 0, y: -20, rotate: 6 }}
+          animate={{ opacity: 0.25, y: [0, 20, 0] }}
+          transition={{ opacity: { duration: 2.5, delay: 0.5 }, y: { duration: 18, repeat: Infinity, ease: "easeInOut" } }}
+        >
+          <div className="h-10 border-b border-white/5 flex items-center px-4 gap-2">
+            <div className="w-2 h-2 rounded-full bg-white/20"/>
+            <div className="w-2 h-2 rounded-full bg-white/20"/>
+            <div className="w-2 h-2 rounded-full bg-white/20"/>
+          </div>
+          <div className="p-4 flex-1 flex flex-col gap-4">
+             {/* Feature Image Loading */}
+             <motion.div 
+                className="w-full h-32 rounded-xl"
+                style={{ background: 'linear-gradient(135deg, rgba(139, 92, 246, 0.2) 0%, rgba(125, 211, 252, 0.1) 100%)' }}
+                initial={{ opacity: 0 }} animate={{ opacity: [0.4, 0.8, 0.4] }} 
+                transition={{ duration: 4, repeat: Infinity }} 
+             />
+             {/* UI Cards appearing */}
+             <div className="flex gap-3">
+               <motion.div className="flex-1 h-20 rounded-lg bg-white/5" initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 1, delay: 1 }} />
+               <motion.div className="flex-1 h-20 rounded-lg bg-white/5" initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 1, delay: 1.4 }} />
+             </div>
+             {/* Text lines */}
+             <motion.div className="h-2 w-3/4 rounded-full bg-white/10" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 2.2 }}/>
+             <motion.div className="h-2 w-1/2 rounded-full bg-white/10" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 2.5 }}/>
+          </div>
+        </motion.div>
+
+        {/* 3. SEO Rankings Rise Graph (Center Right / Bottom) */}
+        <motion.div
+          className="absolute rounded-2xl border hidden md:flex flex-col overflow-hidden"
+          style={{ width: 360, height: 220, right: '30%', bottom: '10%', background: 'rgba(255,255,255,0.015)', borderColor: 'rgba(255,255,255,0.05)', backdropFilter: 'blur(8px)' }}
+          initial={{ opacity: 0, scale: 0.95, rotate: -2 }}
+          animate={{ opacity: 0.3, scale: [0.95, 0.98, 0.95] }}
+          transition={{ opacity: { duration: 2.5, delay: 1 }, scale: { duration: 12, repeat: Infinity, ease: "easeInOut" } }}
+        >
+          <div className="h-10 border-b border-white/5 flex items-center px-4">
+            <span style={{ fontSize: 10, fontFamily: 'var(--font-space-mono)', color: 'rgba(255,255,255,0.4)', letterSpacing: '0.1em' }} className="uppercase">Real-Time SEO Ranking Traffic</span>
+          </div>
+          <div className="flex-1 p-5 flex items-end gap-2">
+           {/* Growing Bars */}
+           {[20, 35, 30, 55, 45, 80, 60, 110, 85, 140].map((h, i) => (
+             <motion.div
+               key={i}
+               className="flex-1 rounded-sm"
+               style={{ background: 'linear-gradient(to top, rgba(125,211,252,0.05), rgba(125,211,252,0.4))' }}
+               initial={{ height: 0 }}
+               animate={{ height: h }}
+               transition={{ duration: 2.5, delay: i * 0.15 + 1.5, ease: "easeOut" }}
+             />
+           ))}
+          </div>
+        </motion.div>
       </div>
 
       {/* Noise Filter Overlay */}
