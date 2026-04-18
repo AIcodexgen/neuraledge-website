@@ -7,8 +7,8 @@ import Link from 'next/link'
 const fadeUp = (delay: number) => ({
   initial: { opacity: 0, y: 28 },
   animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.6, delay, ease: 'easeOut' as const },
-})
+  transition: { duration: 0.6, delay, ease: 'easeOut' },
+} as any)
 
 export default function Hero() {
   return (
