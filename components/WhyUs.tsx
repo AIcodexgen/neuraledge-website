@@ -79,7 +79,7 @@ export default function WhyUs() {
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.6, ease: 'easeOut' }}
           className="text-center"
           style={{ marginBottom: 20 }}
         >
@@ -101,7 +101,7 @@ export default function WhyUs() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
-          transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.6, delay: 0.1, ease: 'easeOut' }}
           style={{
             fontFamily: 'var(--font-dm-sans)',
             fontSize: 17,
@@ -132,7 +132,7 @@ export default function WhyUs() {
               initial={{ opacity: 0, y: 32 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-60px' }}
-              transition={{ duration: 0.5, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: 0.5, delay: i * 0.08, ease: 'easeOut' }}
               className="glass-card"
               style={{ padding: '32px 24px', textAlign: 'center' }}
             >
