@@ -54,51 +54,61 @@ export default function AuroraBackground() {
         }}
       />
 
-      {/* Neural Network Abstract SVG Path Overlay */}
-      <svg className="absolute inset-0 w-full h-full" style={{ pointerEvents: 'none', opacity: 0.15 }} viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice">
-        <motion.path 
-          d="M10,20 L30,40 L60,30 L80,60 L90,20 M30,40 L40,80 L80,60 M10,60 L30,40 M60,30 L20,90"
-          stroke="url(#gradientNet)" 
-          strokeWidth="0.2" 
-          fill="none"
-          initial={{ pathLength: 0 }}
-          animate={{ pathLength: [0, 1, 1, 0] }}
-          transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
-        />
-        <defs>
-          <linearGradient id="gradientNet" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#7DD3FC" />
-            <stop offset="100%" stopColor="#8B5CF6" />
-          </linearGradient>
-        </defs>
-      </svg>
-
-      {/* LLM Imprints */}
-      {[
-        { text: 'GPT-4o', x: '15%', y: '15%', delay: 0 },
-        { text: 'Claude 3.5', x: '85%', y: '30%', delay: 2 },
-        { text: 'Gemini 1.5', x: '20%', y: '80%', delay: 4 },
-        { text: 'Llama 3', x: '75%', y: '75%', delay: 6 },
-      ].map((llm, i) => (
+      {/* High-Tech 3D Perspective Grid */}
+      <div 
+        className="absolute inset-x-0 bottom-0 h-[60vh] opacity-30 pointer-events-none"
+        style={{
+          perspective: '1000px',
+          overflow: 'hidden'
+        }}
+      >
         <motion.div
-          key={i}
-          className="absolute font-syne pointer-events-none"
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: [0, 0.05, 0.05, 0], scale: [0.8, 1, 1.1, 1], y: [0, -40] }}
-          transition={{ duration: 12, delay: llm.delay, repeat: Infinity, ease: 'easeInOut' }}
+          animate={{ backgroundPosition: ['0px 0px', '0px 80px'] }}
+          transition={{ duration: 4, repeat: Infinity, ease: 'linear' }}
           style={{
-            left: llm.x,
-            top: llm.y,
-            fontSize: 'clamp(40px, 8vw, 120px)',
-            fontWeight: 800,
-            color: 'rgba(255,255,255,1)',
-            whiteSpace: 'nowrap',
-            transform: 'translate(-50%, -50%)',
+            position: 'absolute',
+            inset: '-100%',
+            bottom: 0,
+            transformOrigin: '50% 100%',
+            transform: 'rotateX(75deg)',
+            backgroundImage: `
+              linear-gradient(to bottom, rgba(125,211,252,0) 0%, rgba(125,211,252,0.8) 100%),
+              linear-gradient(to right, rgba(139,92,246,0.3) 1px, transparent 1px),
+              linear-gradient(to bottom, rgba(139,92,246,0.3) 1px, transparent 1px)
+            `,
+            backgroundSize: '100% 100%, 80px 80px, 80px 80px',
           }}
-        >
-          {llm.text}
-        </motion.div>
-      ))}
+        />
+      </div>
+
+      {/* Floating LLM Imprints */}
+      <div className="absolute inset-0 pointer-events-none">
+        {[
+          { text: 'Claude 3.5 Sonnet', x: '20%', y: '20%', delay: 0 },
+          { text: 'GPT-4o', x: '75%', y: '25%', delay: 3 },
+          { text: 'Gemini 1.5 Pro', x: '80%', y: '65%', delay: 6 },
+          { text: 'LLaMA 3', x: '15%', y: '70%', delay: 9 },
+        ].map((llm, i) => (
+          <motion.div
+            key={i}
+            className="absolute font-syne pointer-events-none"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: [0, 0.08, 0.08, 0], scale: [0.8, 1, 1.1, 1], y: [0, -60] }}
+            transition={{ duration: 16, delay: llm.delay, repeat: Infinity, ease: 'easeInOut' }}
+            style={{
+              left: llm.x,
+              top: llm.y,
+              fontSize: 'clamp(32px, 6vw, 100px)',
+              fontWeight: 800,
+              color: 'rgba(255,255,255,1)',
+              whiteSpace: 'nowrap',
+              transform: 'translate(-50%, -50%)',
+            }}
+          >
+            {llm.text}
+          </motion.div>
+        ))}
+      </div>
 
       {/* Noise Filter Overlay */}
       <div
